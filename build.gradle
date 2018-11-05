@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.71'
+}
+
+group 'aprendendoKotlin'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compile "org.jetbrains.kotlin:kotlin-reflect"
+
+    compile "io.javalin:javalin:2.3.0"
+    compile "org.slf4j:slf4j-simple:1.7.25"
+    compile "org.jetbrains.exposed:exposed:0.10.5"
+    compile "org.postgresql:postgresql:42.2.2"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.9.6"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.7"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
