@@ -1,7 +1,8 @@
+import interfaces.PostRepository
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-class PostRepository{
+class PostRepositoryImpl : PostRepository {
 
     object PostTable : Table(name = "posts") {
         val id = integer("id").autoIncrement().primaryKey()
@@ -11,7 +12,7 @@ class PostRepository{
 
     private var database =  Database.connect("jdbc:postgresql://localhost:5432/blogpost", "org.postgresql.Driver", "postgres",password = "example")
 
-    fun findAll() : List<Post> {
+    override fun findAll() : List<Post> {
         var postResult = emptyList<Post>()
 
         database
@@ -26,7 +27,7 @@ class PostRepository{
         return postResult
     }
 
-    fun deleteById(id: Int) : Boolean {
+    override fun deleteById(id: Int) : Boolean {
         var result = 0
 
         database
@@ -37,7 +38,7 @@ class PostRepository{
         return result > 0
     }
 
-    fun create (title : String, content : String) : Int? {
+    override fun create (title : String, content : String) : Int? {
         var result : Int? = null
 
         database
@@ -54,7 +55,7 @@ class PostRepository{
         return result
     }
 
-    fun update (id : Int, title : String, content : String) : Boolean  {
+    override fun update (id : Int, title : String, content : String) : Boolean  {
         var result = 0
 
         database
@@ -68,7 +69,7 @@ class PostRepository{
         return result > 0
     }
 
-    fun findById(id: Int) : Post? {
+    override fun findById(id: Int) : Post? {
         var post: Post? = null
 
         database

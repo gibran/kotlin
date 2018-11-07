@@ -1,8 +1,7 @@
 import extensions.toResult
 import io.javalin.Context
-import io.javalin.NotFoundResponse
 
-class PostController (private val service : PostService) {
+class PostController (private val service : interfaces.PostService) {
 
     fun findAll(context: Context) : List<Post>{
         return service.findAll().toResult()
